@@ -1,0 +1,20 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+<a href="{% pageurl post %}" class="blog-thumb-post">
+  {% with post.main_image as main_image %}
+    {% if main_image %}
+      {% image main_image fill-320x200 %}
+    {% else %}
+      TODO: generic image here
+    {% endif %}
+  {% endwith %}
+
+  <h2>
+    {{ post.title }}
+  </h2>
+
+  <p>{{ post.specific.intro }}</p>
+  
+  <footer class="blog-thumb-post-footer">
+    <p class="date">{{ post.date }}</p>
+  </footer>
+</a>

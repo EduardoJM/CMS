@@ -1,0 +1,11 @@
+{% if links %}
+  <ul class="links">
+    {% for link in links %}
+      <li>
+        <a href="{{ link.link }}">
+          {{ link.text }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

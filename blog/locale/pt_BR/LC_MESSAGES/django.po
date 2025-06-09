@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-08 14:18-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: models.py:65
+msgid "post date"
+msgstr "Data da postagem"
+
+#: models.py:67
+msgid "introduction"
+msgstr "Introdução"
+
+#: models.py:71
+msgid "article"
+msgstr "Artigo"
+
+#: models.py:76
+#, fuzzy
+#| msgid "Authors"
+msgid "authors"
+msgstr "Autores"
+
+#: models.py:80
+msgid "tags"
+msgstr "Marcadores"
+
+#: models.py:104
+#, fuzzy
+#| msgid "post date"
+msgid "post informations"
+msgstr "Informações do post"
+
+#: models.py:108
+#, fuzzy
+#| msgid "image"
+msgid "Image"
+msgstr "Imagem"
+
+#: models.py:108
+#, fuzzy
+#| msgid "image"
+msgid "Images"
+msgstr "Imagens"
+
+#: models.py:119
+msgid "image"
+msgstr "imagem"
+
+#: models.py:124
+msgid "image caption"
+msgstr "Legenda da Imagem"
+
+#: models.py:135
+#, fuzzy
+#| msgid "post date"
+msgid "post image"
+msgstr "Imagem do post"
+
+#: models.py:136
+#, fuzzy
+#| msgid "post date"
+msgid "post images"
+msgstr "Imagens do post"
+
+#: models.py:141
+msgid "name"
+msgstr "Nome"
+
+#: models.py:146
+msgid "author image"
+msgstr "Foto do Autor"
+
+#: models.py:159
+msgid "Author"
+msgstr "Autor"
+
+#: models.py:160
+msgid "Authors"
+msgstr "Autores"

@@ -1,0 +1,9 @@
+<main class="posts-grid">
+  {% for post in posts %}
+    {% include 'blog/parts/blog_post_thumb.html' with post=post.specific %}
+  {% empty %}
+    TODO: aqui
+  {% endfor %}
+</main>
+
+{% include 'parts/pagination.html' with page=posts %}

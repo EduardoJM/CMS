@@ -1,0 +1,16 @@
+{% load wagtailimages_tags %}
+
+{% if images %}
+  <div class="body">
+    <h2>Galeria de imagens</h2>
+  </div>
+
+  <div class="images-gallery-grid">
+    {% for item in images %}
+      <div class="image-gallery-item">
+        {% image item.image fill-320x240 %}
+        <p>{{ item.caption }}</p>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}

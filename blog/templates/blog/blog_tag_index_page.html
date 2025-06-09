@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+  {% if request.GET.tag %}
+    <h4>Showing pages tagged "{{ request.GET.tag }}"</h4>
+  {% endif %}
+
+  {% include 'blog/parts/blog_posts_grid.html' %}
+{% endblock %}
