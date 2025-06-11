@@ -5,6 +5,14 @@ from core.environ import env
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
+DEBUG = env('DEBUG')
+SECRET_KEY = env('SECRET_KEY')
+
+ALLOWED_HOSTS = env('ALLOWED_HOSTS')
+CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS')
+
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
 INSTALLED_APPS = [
     'blog',
     "home",
@@ -144,7 +152,6 @@ STORAGES = {
 # can exceed this limit within Wagtail's page editor.
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
 
-
 # Wagtail settings
 
 WAGTAIL_SITE_NAME = "core"
@@ -159,22 +166,10 @@ WAGTAILSEARCH_BACKENDS = {
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-WAGTAILADMIN_BASE_URL = "http://example.com"
+WAGTAILADMIN_BASE_URL = env("BASE_URL")
 
 # Allowed file extensions for documents in the document library.
 # This can be omitted to allow all files, but note that this may present a security risk
 # if untrusted users are allowed to upload files -
 # see https://docs.wagtail.org/en/stable/advanced_topics/deploying.html#user-uploaded-files
 WAGTAILDOCS_EXTENSIONS = ['csv', 'docx', 'key', 'odt', 'pdf', 'pptx', 'rtf', 'txt', 'xlsx', 'zip']
-
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-=dvhdib0y)!9he#a#3q6%_00_266)afg9ngrf0*nz_8)2+%=u+"
-
-# SECURITY WARNING: define the correct hosts in production!
-ALLOWED_HOSTS = ["*"]
-
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
