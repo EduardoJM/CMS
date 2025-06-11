@@ -4,9 +4,11 @@ import environ
 
 env = environ.Env(
     DEBUG=(bool, False),
+    SECRET_KEY=(str, 'insecure-secret-key'),
     USE_S3=(bool, False),
     ALLOWED_HOSTS=(list, []),
     CSRF_TRUSTED_ORIGINS=(list, []),
+    BASE_URL=(str, ''),
 )
 
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
