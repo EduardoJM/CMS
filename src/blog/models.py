@@ -1,15 +1,16 @@
 from django import forms
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db import models
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.translation import gettext_lazy as _
-from modelcluster.fields import ParentalKey, ParentalManyToManyField
 from modelcluster.contrib.taggit import ClusterTaggableManager
-from wagtail.models import Page, Orderable
+from modelcluster.fields import ParentalKey, ParentalManyToManyField
+from taggit.models import TaggedItemBase
 from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.fields import RichTextField
+from wagtail.models import Orderable, Page
 from wagtail.search import index
 from wagtail.snippets.models import register_snippet
-from taggit.models import TaggedItemBase
+
 
 class BlogIndexPage(Page):
     # TODO: remove this intro and do a better index.
@@ -155,12 +156,12 @@ class Author(models.Model):
 
     panels = ["name", "author_image"]
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = _('Author')
         verbose_name_plural = _('Authors')
+
+    def __str__(self):
+        return self.name
 
 @register_snippet
 class NavBarLink(models.Model):
@@ -172,9 +173,9 @@ class NavBarLink(models.Model):
 
     panels = ['text', 'link']
 
-    def __str__(self):
-        return self.text
-    
     class Meta:
         verbose_name = _('Navbar link')
         verbose_name_plural = _('Navbar links')
+
+    def __str__(self):
+        return self.text

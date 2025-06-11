@@ -1,4 +1,5 @@
 from django import template
+
 from blog.models import NavBarLink
 
 register = template.Library()
