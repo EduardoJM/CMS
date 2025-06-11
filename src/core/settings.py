@@ -2,7 +2,7 @@ import os
 
 from core.environ import env
 
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 DEBUG = env('DEBUG')
@@ -15,7 +15,6 @@ EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 INSTALLED_APPS = [
     'blog',
-    "home",
     "search",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",

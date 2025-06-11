@@ -9,6 +9,7 @@ dependencies = [
     "wagtail>=7.0,<7.1",
     "django-storages[s3]==1.14.6",
     "django-environ==0.12.0",
+    "gunicorn>=23.0.0",
 ]
 
 [project.optional-dependencies]

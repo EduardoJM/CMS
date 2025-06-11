@@ -17,3 +17,6 @@ COPY pyproject.toml /app
 RUN pip install .
 
 COPY ./src /app
+COPY .env /app
+
+RUN python /app/manage.py collectstatic --no-input

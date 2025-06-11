@@ -1,3 +1,5 @@
+import os
+
 import environ
 
 env = environ.Env(
@@ -6,3 +8,10 @@ env = environ.Env(
     ALLOWED_HOSTS=(list, []),
     CSRF_TRUSTED_ORIGINS=(list, []),
 )
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(PROJECT_DIR)
+
+print(os.path.join(BASE_DIR, '.env'))
+
+environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
