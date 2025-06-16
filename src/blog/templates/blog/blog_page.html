@@ -4,25 +4,25 @@
 {% block body_class %}template-blogpage{% endblock %}
 
 {% block content %}
-  <article class="blog-article-post">
-    <header class="blog-article-post-header">
-      {% with tags=page.tags.all %}
-        {% if tags %}
-          <div class="tags">
-            {% for tag in tags %}
-              <a href="{% slugurl 'tags' %}?tag={{ tag }}">
-                {{ tag }}
-              </a>
-            {% endfor %}
-          </div>
-        {% endif %}
-      {% endwith %}
+  {% with authors=page.authors.all %}
+    <article class="blog-article-post">
+      <header class="blog-article-post-header">
+        {% with tags=page.tags.all %}
+          {% if tags %}
+            <div class="tags">
+              {% for tag in tags %}
+                <a href="{% slugurl 'tags' %}?tag={{ tag }}">
+                  {{ tag }}
+                </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
 
-      <h1>{{ page.title }}</h1>
-      <p class="meta">
-        <time class="date">{{ page.date|date:"d/m/Y" }}</time>
+        <h1>{{ page.title }}</h1>
+        <p class="meta">
+          <time class="date">{{ page.date|date:"d/m/Y" }}</time>
 
-        {% with authors=page.authors.all %}
           {% if authors %}
             <span class="separator">|</span>
             {% for author in authors %}
@@ -34,24 +34,58 @@
               {% endif %}
             {% endfor %}
           {% endif %}
-        {% endwith %}
-      </p>
+        </p>
 
-      <p class="intro">{{ page.intro }}</p>
-    </header>
+        <p class="intro">{{ page.intro }}</p>
+      </header>
 
-    {% with page.main_image as main_image %}
-      {% if main_image %}
-        <div class="main-image">
-          {% image main_image fill-1200x400 %}
+      {% with page.main_image as main_image %}
+        {% if main_image %}
+          <div class="main-image">
+            {% image main_image fill-1200x400 %}
+          </div>
+        {% endif %}
+      {% endwith %}
+
+      <div class="body">
+        <div class="body-inner">
+          {{ page.body|richtext }}
+        </div>
+      </div>
+
+      {% include 'blog/parts/blog_post_image_gallery.html' with images=page.gallery_images.all %}
+
+      {% if authors %}
+        <div class="authors-block">
+          <div class="body">
+            <div class="body-inner">
+              <h2>
+                {% if authors|length > 1 %}
+                  About the authors
+                {% else %}
+                  About the author
+                {% endif %}
+              </h2>
+              <div class="authors-row">
+                {% for author in authors %}
+                  <div class="author-item">
+                    {% image author.author_image fill-120x120 %}
+                    <div class="author-info">
+                      <p class="author-name">
+                        {{ author.name }}
+                      </p>
+                      {% if author.abstract %}
+                        <p class="author-abstract">{{ author.abstract }}</p>
+                      {% endif %}
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
         </div>
       {% endif %}
-    {% endwith %}
-
-    <div class="body">
-      {{ page.body|richtext }}
-    </div>
-
-    {% include 'blog/parts/blog_post_image_gallery.html' with images=page.gallery_images.all %}
-  </article>
+      
+    </article>
+  {% endwith %}
 {% endblock %}

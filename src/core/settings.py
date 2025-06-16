@@ -153,7 +153,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 10_000
 
 # Wagtail settings
 
-WAGTAIL_SITE_NAME = "core"
+WAGTAIL_SITE_NAME = env("SITE_NAME")
 
 # Search
 # https://docs.wagtail.org/en/stable/topics/search/backends.html

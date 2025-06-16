@@ -15,6 +15,15 @@
   <p>{{ post.specific.intro }}</p>
   
   <footer class="blog-thumb-post-footer">
-    <p class="date">{{ post.date }}</p>
+    {% with tags=post.tags.all %}
+      {% if tags %}
+        {% for tag in tags %}
+          <span>
+            {{ tag }} | 
+          </span>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <span class="date">{{ post.date|date:"d/m/Y" }}</span>
   </footer>
 </a>

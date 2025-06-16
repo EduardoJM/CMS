@@ -12,12 +12,20 @@ from wagtail.search import index
 from wagtail.snippets.models import register_snippet
 
 
-class BlogIndexPage(Page):
-    # TODO: remove this intro and do a better index.
-    intro = RichTextField(blank=True)
+class BlogHomePage(Page):
+    def get_context(self, request):
+        context = super().get_context(request)
+        
+        latest_posts = BlogPage.objects.live().order_by('-first_published_at')[0:3]
+        context['latest_posts'] = latest_posts
+        
+        return context
 
-    content_panels = Page.content_panels + ["intro"]
+    class Meta(Page.Meta):
+        verbose_name = _('Blog home page')
+        verbose_name_plural = _('Blog home pages')
 
+class BlogListPage(Page):
     posts_per_page = 2
 
     def get_context(self, request):
@@ -35,25 +43,45 @@ class BlogIndexPage(Page):
 
         context['posts'] = posts
         return context
+    
+    class Meta(Page.Meta):
+        verbose_name = _('Blog posts list page')
+        verbose_name_plural = _('Blog posts list pages')
 
-class BlogTagIndexPage(Page):
+class BlogListByTagPage(Page):
     posts_per_page = 2
 
     def get_context(self, request):
-        tag = request.GET.get('tag')
-        all_posts = BlogPage.objects.live().order_by('-first_published_at').filter(tags__name=tag)
-        paginator = Paginator(all_posts, self.posts_per_page)
-        page = request.GET.get("page")
-        try:
-            posts = paginator.page(page)
-        except PageNotAnInteger:
-            posts = paginator.page(1)
-        except EmptyPage:
-            posts = paginator.page(paginator.num_pages)
-
         context = super().get_context(request)
-        context['posts'] = posts
+
+        tag = request.GET.get('tag')
+        if not tag:
+            queryset = list(
+                BlogPageTag.objects
+                .select_related('tag')
+                .annotate(tag_name=models.F('tag__name'))
+                .values('tag_name')
+                .annotate(num_posts=models.Count('tag_name'))
+                .order_by('-num_posts')
+            )
+            context['tags'] = queryset
+        else:
+            all_posts = BlogPage.objects.live().order_by('-first_published_at').filter(tags__name=tag)
+            paginator = Paginator(all_posts, self.posts_per_page)
+            page = request.GET.get("page")
+            try:
+                posts = paginator.page(page)
+            except PageNotAnInteger:
+                posts = paginator.page(1)
+            except EmptyPage:
+                posts = paginator.page(paginator.num_pages)
+            context['posts'] = posts
+
         return context
+
+    class Meta(Page.Meta):
+        verbose_name = _('Blog posts list by tag tag page')
+        verbose_name_plural = _('Blog posts list by tag pages')
 
 class BlogPageTag(TaggedItemBase):
     content_object = ParentalKey(
@@ -112,6 +140,10 @@ class BlogPage(Page):
         InlinePanel("gallery_images", label=_('Image'), heading=_('Images')),
     ]
 
+    class Meta(Page.Meta):
+        verbose_name = _('Blog post')
+        verbose_name_plural = _('Blog posts')
+
 class BlogPageGalleryImage(Orderable):
     page = ParentalKey(
         BlogPage,
@@ -153,8 +185,13 @@ class Author(models.Model):
         on_delete=models.SET_NULL,
         related_name='+',
     )
+    abstract = models.CharField(
+        verbose_name=_('small abstract'),
+        max_length=255,
+        blank=True,
+    )
 
-    panels = ["name", "author_image"]
+    panels = ["name", "author_image", "abstract"]
 
     class Meta:
         verbose_name = _('Author')
@@ -169,9 +206,17 @@ class NavBarLink(models.Model):
         verbose_name=_('text'),
         max_length=255,
     )
-    link = models.URLField(_('link'))
+    link = models.URLField(_('link'), blank=True)
+    page = ParentalKey(
+        Page,
+        on_delete=models.CASCADE,
+        verbose_name=_('page'),
+        blank=True,
+        null=True,
+        default=None
+    )
 
-    panels = ['text', 'link']
+    panels = ['text', 'link', 'page']
 
     class Meta:
         verbose_name = _('Navbar link')

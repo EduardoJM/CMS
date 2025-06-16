@@ -1,0 +1,36 @@
+{% extends "blog/base.html" %}
+{% load i18n static wagtailcore_tags blog_tags %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/tags-cloud.css' %}">
+{% endblock %}
+
+{% block content %}
+  <div class="posts-grid-container">
+    <div class="posts-grid-inner">
+      {% if request.GET.tag %}
+        {% with tag=request.GET.tag %}
+          <h1 class="list-title">{% blocktranslate %}Showing posts with tag {{ tag }}{% endblocktranslate %}</h1>
+        {% endwith %}
+      {% endif %}
+
+      {% if posts %}
+        {% include 'blog/parts/blog_posts_grid.html' %}
+      {% endif %}
+      {% if tags %}
+        <ul class="cloud" role="navigation" aria-label="Webdev tag cloud">
+          {% for tag in tags %}
+            <li>
+              <a
+                data-weight="{% tags_cloud_weight tag.num_posts tags %}"
+                href="{% slugurl 'tags' %}?tag={{ tag.tag_name }}"
+              >
+                {{ tag.tag_name }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

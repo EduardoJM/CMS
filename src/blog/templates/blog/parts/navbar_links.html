@@ -1,8 +1,9 @@
+{% load wagtailcore_tags %}
 {% if links %}
   <ul class="links">
     {% for link in links %}
       <li>
-        <a href="{{ link.link }}">
+        <a href="{% if link.page %}{% pageurl link.page %}{% else %}{{ link.link }}{% endif %}">
           {{ link.text }}
         </a>
       </li>

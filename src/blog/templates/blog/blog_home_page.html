@@ -1,0 +1,24 @@
+{% extends "blog/base.html" %}
+{% load i18n wagtailcore_tags %}
+
+{% block body_class %}template-blogindexpage{% endblock %}
+
+{% block content %}
+  <div class="blog-home-page">
+    <div class="blog-home-page-inner">
+      {% if latest_posts %}
+        <h1 class="list-title">
+          {% translate 'Latest posts' %}
+        </h1>
+
+        {% include 'blog/parts/blog_posts_grid.html' with posts=latest_posts %}
+
+        <div class="all-posts-container">
+          <a href="{% slugurl 'posts' %}">
+            {% translate 'See all posts' %}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

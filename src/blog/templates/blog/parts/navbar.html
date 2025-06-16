@@ -1,11 +1,16 @@
-{% load blog_tags %}
+{% load wagtailcore_tags blog_tags %}
 <nav id="navbar">
-  <!--<div class="brand">
-    Q?
-  </div>-->
+  <a href="/" class="brand">
+    Eduardo Oliveira
+  </a>
 
   {% if page and page.scroll_share_buttons %}
     <p class="scroll-title buttons">
+      {% fullpageurl page as url %}
+      {% include 'blog/parts/sharelinks/whatsapp.html' %}
+      {% include 'blog/parts/sharelinks/bluesky.html' %}
+      {% include 'blog/parts/sharelinks/linkedin.html' %}
+      {% include 'blog/parts/sharelinks/facebook.html' %}
       |
     </p>
   {% endif %}

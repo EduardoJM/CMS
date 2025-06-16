@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-08 14:18-0300\n"
+"POT-Creation-Date: 2025-06-14 21:18-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,78 +18,138 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: models.py:65
+#: models.py:40
+msgid "Blog home page"
+msgstr "Página inicial de Blog"
+
+#: models.py:41
+msgid "Blog home pages"
+msgstr "Páginas iniciais de Blog"
+
+#: models.py:63
+#, fuzzy
+#| msgid "Blog posts"
+msgid "Blog tag posts page"
+msgstr "Página de posts por tag"
+
+#: models.py:64
+#, fuzzy
+#| msgid "Blog home pages"
+msgid "Blog tag posts pages"
+msgstr "Páginas de posts por tag"
+
+#: models.py:74
 msgid "post date"
 msgstr "Data da postagem"
 
-#: models.py:67
+#: models.py:76
 msgid "introduction"
 msgstr "Introdução"
 
-#: models.py:71
+#: models.py:80
 msgid "article"
 msgstr "Artigo"
 
-#: models.py:76
+#: models.py:85
 #, fuzzy
 #| msgid "Authors"
 msgid "authors"
 msgstr "Autores"
 
-#: models.py:80
+#: models.py:89
 msgid "tags"
 msgstr "Marcadores"
 
-#: models.py:104
+#: models.py:116
 #, fuzzy
 #| msgid "post date"
 msgid "post informations"
 msgstr "Informações do post"
 
-#: models.py:108
+#: models.py:120
 #, fuzzy
 #| msgid "image"
 msgid "Image"
 msgstr "Imagem"
 
-#: models.py:108
+#: models.py:120
 #, fuzzy
 #| msgid "image"
 msgid "Images"
 msgstr "Imagens"
 
-#: models.py:119
+#: models.py:124
+msgid "Blog post"
+msgstr "Postagem do Blog"
+
+#: models.py:125
+msgid "Blog posts"
+msgstr "Postagens do Blog"
+
+#: models.py:135
 msgid "image"
 msgstr "imagem"
 
-#: models.py:124
+#: models.py:140
 msgid "image caption"
 msgstr "Legenda da Imagem"
 
-#: models.py:135
+#: models.py:151
 #, fuzzy
 #| msgid "post date"
 msgid "post image"
 msgstr "Imagem do post"
 
-#: models.py:136
+#: models.py:152
 #, fuzzy
 #| msgid "post date"
 msgid "post images"
 msgstr "Imagens do post"
 
-#: models.py:141
+#: models.py:157
 msgid "name"
 msgstr "Nome"
 
-#: models.py:146
+#: models.py:162
 msgid "author image"
 msgstr "Foto do Autor"
 
-#: models.py:159
+#: models.py:172
 msgid "Author"
 msgstr "Autor"
 
-#: models.py:160
+#: models.py:173
 msgid "Authors"
 msgstr "Autores"
+
+#: models.py:181
+msgid "text"
+msgstr "Texto"
+
+#: models.py:184
+msgid "link"
+msgstr "Link"
+
+#: models.py:189
+msgid "Navbar link"
+msgstr "Link de Barra de Navegação"
+
+#: models.py:190
+msgid "Navbar links"
+msgstr "Links de Barra de Navegação"
+
+#: templates/blog/parts/sharelinks/bluesky.html:2
+msgid "Share on Bluesky"
+msgstr "Compartilhar no Bluesky"
+
+#: templates/blog/parts/sharelinks/facebook.html:2
+msgid "Share on facebook"
+msgstr "Compartilhar no Facebook"
+
+#: templates/blog/parts/sharelinks/linkedin.html:2
+msgid "Share on LinkedIn"
+msgstr "Compartilhar no LinkedIn"
+
+#: templates/blog/parts/sharelinks/whatsapp.html:2
+msgid "Share on whatsapp"
+msgstr "Compartilhar no WhatsApp"
