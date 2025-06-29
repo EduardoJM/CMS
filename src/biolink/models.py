@@ -49,7 +49,7 @@ class BioLinkPost(Page):
         default=False,
     )
     link = models.URLField(
-        _('Link da postagem')
+        _('post link')
     )
 
     content_panels = Page.content_panels + [
