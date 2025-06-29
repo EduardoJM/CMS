@@ -1,0 +1,79 @@
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+/* VARIABLES */
+:root {
+  --font-family: "Inter", sans-serif;
+}
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-optical-sizing: auto;
+  font-family: var(--font-family);
+}
+/* PAGE */
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#container #main {
+  width: 100%;
+  max-width: 700px;
+  padding-bottom: 48px;
+}
+.page-header {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 40px 0;
+}
+.page-header .avatar-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.page-header .avatar-line img {
+  border-radius: 50%;
+}
+.page-header h1 {
+  text-align: center;
+  margin: 16px 0;
+  font-size: 1.7rem;
+}
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.posts-grid a.post-link {
+  position: relative;
+  color: #000;
+  text-decoration: none;
+}
+.posts-grid a.post-link img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+.posts-grid a.post-link .multiple-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.posts-grid a.post-link .overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: 500;
+  background-color: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.posts-grid a.post-link:hover .overlay {
+  opacity: 1;
+}

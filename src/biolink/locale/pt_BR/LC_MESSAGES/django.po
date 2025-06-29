@@ -1,0 +1,50 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-29 13:59-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: models.py:10 models.py:44
+msgid "image"
+msgstr "Imagem"
+
+#: models.py:22
+msgid "Account to bio links"
+msgstr "Conta para Links de Bio"
+
+#: models.py:23
+msgid "Accounts to bio links"
+msgstr "Contas para Links de Bio"
+
+#: models.py:48
+msgid "show multiple icon?"
+msgstr "Mostrar ícone de carrossel?"
+
+#: models.py:52
+msgid "post link"
+msgstr "Link da postagem"
+
+#: models.py:62
+msgid "Post to bio link"
+msgstr "Postagem de Links de Bio"
+
+#: models.py:63
+msgid "Posts to bio links"
+msgstr "Postagens de Links de Bio"
+
+#: templates/biolink/base.html:7
+msgid "Bio links"
+msgstr "Links da Bio"

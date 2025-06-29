@@ -1,0 +1,17 @@
+{% extends 'biolink/base.html' %}
+{% load wagtailimages_tags %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block content %}
+  <header class="page-header">
+    <div class="avatar-line">
+      {% image page.image fill-120x120 %}
+    </div>
+    <h1>{{ page.title }}</h1>
+  </header>
+
+  <main class="posts-grid">
+    {% include 'biolink/parts/posts-grid.html' %}
+  </main>
+{% endblock %}
