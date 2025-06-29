@@ -10,12 +10,13 @@ class BioLinkAccount(Page):
         verbose_name=_('image'),
         on_delete=models.CASCADE,
     )
+    ajax_template = 'biolink/bio_link_account_partial.html'
 
     content_panels = Page.content_panels + [
         "image",
     ]
 
-    posts_per_page = 2
+    posts_per_page = 12
 
     class Meta(Page.Meta):
         verbose_name = _('Account to bio links')
@@ -36,7 +37,6 @@ class BioLinkAccount(Page):
         context['posts'] = posts
         
         return context
-
 
 class BioLinkPost(Page):
     image = models.ForeignKey(
