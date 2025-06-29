@@ -14,8 +14,12 @@ CSRF_TRUSTED_ORIGINS = env('CSRF_TRUSTED_ORIGINS')
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 INSTALLED_APPS = [
+    # our apps
     'blog',
-    "search",
+    'search',
+    # Custom features
+    'core.code_block',
+    # Wagtail default
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.embeds",

@@ -9,8 +9,7 @@ function occupySlice(targetArr, start, end, componentKey) {
 const PrismOptions = Immutable.Record({
   defaultSyntax: null,
   filter: function (block) {
-    console.log(block.getType());
-    return block.getType() === 'code-block';
+    return block.getType() === 'custom-code';
   },
   getSyntax: function (block) {
     if (block.getData) {
@@ -60,16 +59,16 @@ PrismDecorator.prototype.getDecorations = function(block) {
   var grammar = Prism.languages[syntax];
   tokens = Prism.tokenize(blockText, grammar);
 
-
   function processToken(decorations, token, offset) {
     if (typeof token === 'string') {
       return
     }
+    const tokenLength = token.length || token.content.length;
     //First write this tokens full length
     tokenId = 'tok'+(tokenCount++);
     resultId = blockKey + '-' + tokenId;
     highlighted[blockKey][tokenId] = token;
-    occupySlice(decorations, offset, offset + token.length, resultId);
+    occupySlice(decorations, offset, offset + tokenLength, resultId);
     //Then recurse through the child tokens, overwriting the parent
     var childOffset = offset;
     for (var i =0; i < token.content.length; i++) {
@@ -82,7 +81,8 @@ PrismDecorator.prototype.getDecorations = function(block) {
   for (var i =0; i < tokens.length; i++) {
       token = tokens[i];
       processToken(decorations, token, offset);
-      offset += token.length;
+      const tokenLength = token.length || token.content.length;
+      offset += tokenLength;
   }
 
   return Immutable.List(decorations);
@@ -109,9 +109,10 @@ const prismPlugin = {
     new PrismDecorator({
       getSyntax(block) {
         const data = block.getData();
-        console.log(data);
-        const language = data.get('language') || data.get('syntax');
-        console.log(language);
+        let language = data.get('language') || data.get('syntax');
+        if (!language) {
+          language = 'javascript';
+        }
         if (typeof Prism.languages[language] === 'object') {
           return language;
         }
