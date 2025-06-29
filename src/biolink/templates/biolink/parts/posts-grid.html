@@ -1,0 +1,19 @@
+{% load wagtailimages_tags %}
+
+<main class="posts-grid">
+  {% for item in posts %}
+    {% with post=item.specific %}
+      <a href="{{ post.link }}" target="_blank" class="post-link">
+        {% image post.image fill-512x512 %}
+
+        {% if post.multiple %}
+          <span class="multiple-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 28 28" fill="#fff">
+              <path fill-rule="evenodd" d="M25.2 23.8V5.88c1.68.56 2.8 2.1 2.8 3.92v14c0 2.38-1.82 4.2-4.2 4.2h-14c-1.82 0-3.36-1.12-3.92-2.8H23.8c.84 0 1.4-.56 1.4-1.4zM4.2 0h14c2.38 0 4.2 1.82 4.2 4.2v14c0 2.38-1.82 4.2-4.2 4.2h-14c-2.38 0-4.2-1.82-4.2-4.2v-14C0 1.82 1.82 0 4.2 0z" />
+            </svg>
+          </span>
+        {% endif %}
+      </a>
+    {% endwith %}
+  {% endfor %}
+</main>
